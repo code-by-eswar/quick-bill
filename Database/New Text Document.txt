@@ -1,0 +1,20 @@
+
+
+Remaining pending tables for db 
+
+Table	Purpose
+bills	bill header
+bill_items	products inside bill
+inventory_transactions	stock history
+================================
+tmrws tasks
+for authentication system 
+
+
+✅ Login API
+✅ JWT generation
+✅ password encryption
+✅ role system
+✅ validation
+✅ logging
+✅ exception handling

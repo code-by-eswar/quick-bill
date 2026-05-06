@@ -1,0 +1,16 @@
+# backend
+target/
+*.log
+*.class
+*.jar
+.idea/
+.env
+
+# frontend
+node_modules/
+android/.gradle/
+ios/Pods/
+
+# OS
+.DS_Store
+Thumbs.db
