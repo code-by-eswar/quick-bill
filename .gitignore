@@ -14,5 +14,5 @@ ios/Pods/
 # OS
 .DS_Store
 Thumbs.db
-
+# text files 
 *.txt
