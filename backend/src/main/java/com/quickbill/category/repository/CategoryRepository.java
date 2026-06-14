@@ -1,0 +1,17 @@
+package com.quickbill.category.repository; 
+
+import com.quickbill.category.entity.Category;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.*;
+
+import java.util.Optional;
+
+public interface CategoryRepository
+        extends JpaRepository<Category, Long> {
+
+    Optional<Category> findByName(String name);
+
+    boolean existsByName(String name);
+      List<Category> findByIsActiveTrue();
+}
