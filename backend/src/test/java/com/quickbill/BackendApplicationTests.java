@@ -1,4 +1,4 @@
-package quickbill_backend;
+package com.quickbill;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
