@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.quickbill.exception.ResourceAlreadyExistsException;
 import com.quickbill.exception.ResourceNotFoundException;
+import com.quickbill.notification.RedisAlertService;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     private final CategoryRepository categoryRepository;
-
+    private final RedisAlertService redisAlertService;
     public ProductResponse createProduct(
         ProductRequest request) {
 
@@ -187,14 +188,21 @@ public ProductResponse updateProduct(
     product.setMinimumStockLevel(
             request.getMinimumStockLevel());
     product.setCategory(category);
+Product updatedProduct =
+        productRepository.save(product);
 
-    Product updatedProduct =
-            productRepository.save(product);
+if (updatedProduct.getStockQuantity()
+        > updatedProduct.getMinimumStockLevel()) {
 
-    log.info("Product updated successfully: {}",
+    redisAlertService.removeAlert(
             updatedProduct.getId());
+}
 
-    return mapToResponse(updatedProduct);
+log.info("Product updated successfully: {}",
+        updatedProduct.getId());
+
+return mapToResponse(updatedProduct);
+   
 }
 public void deactivateProduct(
         Long id) {
